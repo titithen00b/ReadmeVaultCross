@@ -80,5 +80,5 @@ jobs:
             chmod +x ReadmeVault_*.AppImage
             ./ReadmeVault_*.AppImage
             ```
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
