@@ -11,4 +11,14 @@ export default defineConfig(async () => ({
       ignored: ["**/src-tauri/**"],
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          highlight: ["highlight.js"],
+          markdown: ["marked", "marked-highlight"],
+        },
+      },
+    },
+  },
 }));
