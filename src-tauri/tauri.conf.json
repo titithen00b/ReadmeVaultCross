@@ -1,7 +1,7 @@
 {
   "productName": "ReadmeVault",
-  "version": "1.0.0",
-  "identifier": "com.readmevault.app",
+  "version": "1.0.1",
+  "identifier": "com.readmevault.desktop",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
