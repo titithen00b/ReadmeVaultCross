@@ -9,6 +9,7 @@
   import SettingsModal from "./lib/components/SettingsModal.svelte";
   import AboutModal from "./lib/components/AboutModal.svelte";
   import HelpModal from "./lib/components/HelpModal.svelte";
+  import UpdaterModal from "./lib/components/UpdaterModal.svelte";
   import { load, selectedProject } from "./lib/store";
 
   // Modal state
@@ -19,6 +20,7 @@
   let showSettings = false;
   let showAbout = false;
   let showHelp = false;
+  let showUpdater = false;
   let importedFileMd: { name: string; content: string } | null = null;
 
   onMount(async () => {
@@ -30,6 +32,7 @@
     await listen("menu:import-file", () => handleImportFile());
     await listen("menu:about", () => (showAbout = true));
     await listen("menu:help", () => (showHelp = true));
+    await listen("menu:check-update", () => (showUpdater = true));
   });
 
   function handleNewProject() {
@@ -119,6 +122,10 @@
 
 {#if showHelp}
   <HelpModal on:close={() => (showHelp = false)} />
+{/if}
+
+{#if showUpdater}
+  <UpdaterModal on:close={() => (showUpdater = false)} />
 {/if}
 
 <style>

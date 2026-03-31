@@ -170,6 +170,8 @@ fn build_menu(app: &tauri::AppHandle) -> Result<Menu<tauri::Wry>, tauri::Error> 
         true,
         &[
             &MenuItem::with_id(app, "help", "Aide ReadmeVault", true, Some("CmdOrCtrl+/"))?,
+            &PredefinedMenuItem::separator(app)?,
+            &MenuItem::with_id(app, "check_update", "Rechercher des mises à jour…", true, None::<&str>)?,
         ],
     )?;
 
@@ -180,6 +182,8 @@ fn build_menu(app: &tauri::AppHandle) -> Result<Menu<tauri::Wry>, tauri::Error> 
 
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_updater::Builder::new().build())
+        .plugin(tauri_plugin_process::init())
         .setup(|app| {
             let menu = build_menu(app.handle())?;
             app.set_menu(menu)?;
@@ -214,6 +218,11 @@ pub fn run() {
             "help" => {
                 if let Some(win) = app.get_webview_window("main") {
                     let _ = win.emit("menu:help", ());
+                }
+            }
+            "check_update" => {
+                if let Some(win) = app.get_webview_window("main") {
+                    let _ = win.emit("menu:check-update", ());
                 }
             }
             _ => {}

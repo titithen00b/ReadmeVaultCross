@@ -24,6 +24,14 @@
       "csp": null
     }
   },
+  "plugins": {
+    "updater": {
+      "pubkey": "RWR3aos85J/1zAhyopNPFJLPZEHilC0A1+L2h+vndxVtnqNoAE45P2Lk",
+      "endpoints": [
+        "https://github.com/titithen00b/ReadmeVaultCross/releases/latest/download/latest.json"
+      ]
+    }
+  },
   "bundle": {
     "active": true,
     "targets": "all",
